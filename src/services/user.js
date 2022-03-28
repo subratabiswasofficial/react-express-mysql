@@ -5,7 +5,6 @@ class User {
     this.name = name;
     this.roll = roll;
     this.department = department;
-    this.saved = "false";
   }
   static getUserByRoll(roll) {
     const getUserPromise = new Promise((resolve, reject) => {

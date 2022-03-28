@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node src/server",
-    "dev": "nodemon src/server"
+    "client": "npm start --prefix client",
+    "server": "nodemon src/server",
+    "dev": "concurrently \"npm run server\"  \"npm run client\""
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +17,7 @@
     "mysql": "^2.18.1"
   },
   "devDependencies": {
+    "concurrently": "^7.0.0",
     "nodemon": "^2.0.15"
   }
 }

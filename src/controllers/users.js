@@ -14,6 +14,7 @@ const getUser = async (req, res) => {
 const createUser = async (req, res) => {
   try {
     const { name, roll, department } = req.body;
+    console.log({ name, roll, department });
     const user = new User({ name, roll, department });
     await user.save();
     return res.status(201).json({ msg: "created", user: user.data() });
