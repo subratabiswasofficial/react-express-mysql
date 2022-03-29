@@ -6,6 +6,44 @@ class User {
     this.roll = roll;
     this.department = department;
   }
+  static registerUser({ email, uid, password }) {
+    const registerUserData = new Promise((resolve, reject) => {
+      connection.query(
+        {
+          sql: "INSERT INTO Users VALUES ( ?, ?, ? )",
+          timeout: 4000,
+        },
+        [uid, email, password],
+        function (error, results, fields) {
+          if (error != null) {
+            console.log(error);
+            return reject("Unknown Error Happen");
+          }
+          return resolve({ uid });
+        }
+      );
+    });
+    return registerUserData;
+  }
+  static getUserByEmail(email) {
+    const getUserDataByEmail = new Promise((resolve, reject) => {
+      connection.query(
+        {
+          sql: "SELECT * FROM Users WHERE email = ?",
+          timeout: 4000,
+        },
+        [email],
+        function (error, results, fields) {
+          if (error != null || results.length == 0) {
+            return reject("Unknown Error Happen");
+          }
+          const { email, uid, password } = results[0];
+          return resolve({ email, uid, password });
+        }
+      );
+    });
+    return getUserDataByEmail;
+  }
   static getUserByRoll(roll) {
     const getUserPromise = new Promise((resolve, reject) => {
       connection.query(
