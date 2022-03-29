@@ -3,7 +3,6 @@ const { Link } = require("../services/Link");
 const bcrypt = require("bcrypt");
 const { v4: uuidV4 } = require("uuid");
 const jwt = require("jsonwebtoken");
-const { links } = require("express/lib/response");
 
 const getUser = async (req, res) => {
   try {
